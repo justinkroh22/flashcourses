@@ -1,6 +1,7 @@
 """
 Author: Andrea Murphy
-Last Updated: April 2018
+Edited: Lloyd Dagoc
+Last Updated: October 2018
 Relative File Path: flash/src/FlashCourses/settings/common.py
 Description: Public settings file for developing
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'flashcards',
     'rest_framework',
     'corsheaders',
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +77,20 @@ TEMPLATES = [
     },
 ]
 
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Apps covered by the coverage API.
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=accounts,courses,flashcards',
+]
+
 WSGI_APPLICATION = 'FlashCourses.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
