@@ -5,16 +5,17 @@ Relative File Path: flash/scr/seeder.py
 Description: Generates fake data for the database
 """
 
-#pip3 install faker
+
+from django.contrib.auth.models import User
+from courses.models import Institution, Course
+from flashcards.models import Deck, Card
 import time
 import random
 import uuid
 from faker import Faker
-fake = Faker()
-from django.contrib.auth.models import User
-from courses.models import Institution, Course
-from flashcards.models import Deck, Card
 from faker.providers import BaseProvider
+fake = Faker()
+
 
 def seed_users(num_entries, overwrite=False):
     """
@@ -36,11 +37,13 @@ def seed_users(num_entries, overwrite=False):
         count += 1
         percent_complete = count / num_entries * 100
         print(
-                "Adding {} new Users: {:.2f}%".format(num_entries, percent_complete),
-                end='\r',
-                flush=True
-                )
+            "Adding {} new Users: {:.2f}%".format(num_entries,
+            percent_complete),
+            end='\r',
+            flush=True
+        )
     print()
+
 
 def seed_institution(num_entries, overwrite=False):
     """
@@ -59,11 +62,12 @@ def seed_institution(num_entries, overwrite=False):
         count += 1
         percent_complete = count / num_entries * 100
         print(
-                "Adding {} new Institutions: {:.2f}%".format(num_entries, percent_complete),
-                end='\r',
-                flush=True
-                )
+            "Adding {} new Institutions: {:.2f}%".format(num_entries, percent_complete),
+            end='\r',
+            flush=True
+        )
     print()
+
 
 def seed_course(num_entries, overwrite=False):
     """
@@ -75,20 +79,21 @@ def seed_course(num_entries, overwrite=False):
     count = 0
     for _ in range(num_entries):
         new_obj = Course(
-        course_title = fake.first_name(),
-        course_id = random.randrange(100),
-        parent_institution = random.choice(institution),
-        course_description= fake.text(),
+            course_title = fake.first_name(),
+            course_id = random.randrange(100),
+            parent_institution = random.choice(institution),
+            course_description= fake.text(),
         )
         new_obj.save()
         count += 1
         percent_complete = count / num_entries * 100
         print(
-                "Adding {} new Courses: {:.2f}%".format(num_entries, percent_complete),
-                end='\r',
-                flush=True
-                )
+            "Adding {} new Courses: {:.2f}%".format(num_entries, percent_complete),
+            end='\r',
+            flush=True
+        )
     print()
+
 
 def seed_deck(num_entries, overwrite=False):
     """
@@ -110,11 +115,12 @@ def seed_deck(num_entries, overwrite=False):
         count += 1
         percent_complete = count / num_entries * 100
         print(
-                "Adding {} new Decks: {:.2f}%".format(num_entries, percent_complete),
-                end='\r',
-                flush=True
-                )
+            "Adding {} new Decks: {:.2f}%".format(num_entries, percent_complete),
+            end='\r',
+            flush=True
+        )
     print()
+
 
 def seed_card(num_entries, overwrite=False):
     """
@@ -126,25 +132,28 @@ def seed_card(num_entries, overwrite=False):
     count = 0
     for _ in range(num_entries):
         new_obj = Card(
-        parent_deck = random.choice(deck),
-        front = fake.text(),
-        back = fake.text(),
+            parent_deck = random.choice(deck),
+            front = fake.text(),
+            back = fake.text(),
         )
         new_obj.save()
         count += 1
         percent_complete = count / num_entries * 100
         print(
-                "Adding {} new Cards: {:.2f}%".format(num_entries, percent_complete),
-                end='\r',
-                flush=True
-                )
+            "Adding {} new Cards: {:.2f}%".format(num_entries,
+            percent_complete),
+            end='\r',
+            flush=True
+        )
     print()
+
 
 def seed_all(num_entries, overwrite=False):
     """
     Explanation of function: Runs all seeder functions
     Arguments: num_entries, overwrite=False
-    Returns: The number of new fake users, institutions, courses, decks, and cards with print function
+    Returns: The number of new fake users,
+     institutions, courses, decks, and cards with print function
     """
     start_time = time.time()
 
@@ -157,4 +166,6 @@ def seed_all(num_entries, overwrite=False):
     elapsed_time = time.time() - start_time
     minutes = int(elapsed_time // 60)
     seconds = int(elapsed_time % 60)
-    print("Script Execution took: {} minutes {} seconds".format(minutes, seconds))
+    print(
+        "Script Execution took: {} minutes {} seconds".format(minutes, seconds)
+    )

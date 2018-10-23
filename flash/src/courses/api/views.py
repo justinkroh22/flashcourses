@@ -10,13 +10,6 @@ NOTE: Uncomment the commented code below to enable authentication with JWT.
 """
 
 
-# Institution Fields Generalization
-INST_UNIQUE_ID = 'unique_id'
-
-# Course Fields Generalization
-COUR_UNIQUE_ID = 'unique_id'
-
-
 from .serializers import (
     InstitutionSerializer,
     InstitutionDetailSerializer,
@@ -29,13 +22,21 @@ from courses.models import Institution, Course
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
+# Institution Fields Generalization
+INST_UNIQUE_ID = 'unique_id'
+
+# Course Fields Generalization
+COUR_UNIQUE_ID = 'unique_id'
+
+
 class CreateInstitutionAPIView(generics.CreateAPIView):
     """
     This API endpoint is for creating a new Institution.
     """
     queryset = Institution.objects.all()
     serializer_class = InstitutionSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class RetrieveInstitutionAPIView(generics.RetrieveAPIView):
     """
@@ -45,7 +46,8 @@ class RetrieveInstitutionAPIView(generics.RetrieveAPIView):
     lookup_field = INST_UNIQUE_ID
     queryset = Institution.objects.all()
     serializer_class = InstitutionSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class ListInstitutionAPIView(generics.ListAPIView):
     """
@@ -53,7 +55,8 @@ class ListInstitutionAPIView(generics.ListAPIView):
     """
     queryset = Institution.objects.all().order_by('institution_name')
     serializer_class = InstitutionSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class DestroyInstitutionAPIView(generics.DestroyAPIView):
     """
@@ -63,7 +66,8 @@ class DestroyInstitutionAPIView(generics.DestroyAPIView):
     lookup_field = INST_UNIQUE_ID
     queryset = Institution.objects.all()
     serializer_class = InstitutionSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class UpdateInstitutionAPIView(generics.UpdateAPIView):
     """
@@ -73,7 +77,8 @@ class UpdateInstitutionAPIView(generics.UpdateAPIView):
     lookup_field = INST_UNIQUE_ID
     queryset = Institution.objects.all()
     serializer_class = InstitutionSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class DetailInstitutionAPIView(generics.RetrieveAPIView):
     """
@@ -85,7 +90,8 @@ class DetailInstitutionAPIView(generics.RetrieveAPIView):
     lookup_field = INST_UNIQUE_ID
     queryset = Institution.objects.all()
     serializer_class = InstitutionDetailSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class CreateCourseAPIView(generics.CreateAPIView):
     """
@@ -93,7 +99,8 @@ class CreateCourseAPIView(generics.CreateAPIView):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class RetrieveCourseAPIView(generics.RetrieveAPIView):
     """
@@ -103,7 +110,8 @@ class RetrieveCourseAPIView(generics.RetrieveAPIView):
     lookup_field = COUR_UNIQUE_ID
     queryset = Course.objects.all()
     serializer_class = CourseOutputSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class ListCourseAPIView(generics.ListAPIView):
     """
@@ -111,7 +119,8 @@ class ListCourseAPIView(generics.ListAPIView):
     """
     queryset = Course.objects.all().order_by('course_id')
     serializer_class = CourseOutputSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class DestroyCourseAPIView(generics.DestroyAPIView):
     """
@@ -121,7 +130,8 @@ class DestroyCourseAPIView(generics.DestroyAPIView):
     lookup_field = COUR_UNIQUE_ID
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class UpdateCourseAPIView(generics.UpdateAPIView):
     """
@@ -131,7 +141,8 @@ class UpdateCourseAPIView(generics.UpdateAPIView):
     lookup_field = COUR_UNIQUE_ID
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    #permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
+
 
 class DetailCourseAPIView(generics.RetrieveAPIView):
     """
@@ -143,7 +154,8 @@ class DetailCourseAPIView(generics.RetrieveAPIView):
     lookup_field = COUR_UNIQUE_ID
     queryset = Course.objects.all()
     serializer_class = CourseDetailSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class TreeCourseAPIView(generics.RetrieveAPIView):
     """
@@ -156,4 +168,4 @@ class TreeCourseAPIView(generics.RetrieveAPIView):
     lookup_field = COUR_UNIQUE_ID
     queryset = Course.objects.all()
     serializer_class = CourseTreeSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

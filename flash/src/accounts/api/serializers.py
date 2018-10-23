@@ -24,7 +24,11 @@ from rest_framework.serializers import (
 class RegistrationSerializer(ModelSerializer):
     email = EmailField(required=True, label="Email")
     email2 = EmailField(required=True, label="Retype Email")
-    username = CharField(required=True, label="Username", validators=[UniqueValidator(queryset=User.objects.all())])
+    username = CharField(
+        required=True, 
+        label="Username", 
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
     password = CharField(required=True, label="Password", style={'input_type': 'password'}, write_only=True)
     password2 = CharField(required=True, label="Retype Password", style={'input_type': 'password'}, write_only=True)
 

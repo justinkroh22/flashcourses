@@ -8,6 +8,7 @@ Database: FlashCourses- mySQL
 from django.db import models
 import uuid
 
+
 class Institution(models.Model):
     """
     Institution model
@@ -27,7 +28,7 @@ class Institution(models.Model):
                                 blank=False)
     unique_id = models.UUIDField(
                                 default=uuid.uuid4,
-                                editable= False,
+                                editable=False,
                                 unique=True)
 
     def __str__(self):
@@ -58,7 +59,7 @@ class Course(models.Model):
                                 blank=False)
     unique_id = models.UUIDField(
                                 default=uuid.uuid4,
-                                editable= False,
+                                editable=False,
                                 unique=True)
 
     def __str__(self):
